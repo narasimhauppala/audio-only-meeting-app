@@ -26,18 +26,7 @@ export const securityHeaders = helmet({
   contentSecurityPolicy: {
     directives: {
       defaultSrc: ["'self'"],
-      connectSrc: [
-        "'self'", 
-        "http://localhost:5173",
-        "http://192.168.1.74:5174",
-        "http://192.168.1.80:5173",
-        "ws://localhost:5000",
-        "ws://192.168.1.74:5002",
-        "ws://192.168.1.80:5000",
-        "http://localhost:5174",
-        "https://audio-only-meeting-app-admin-frontend.onrender.com",
-        "https://audio-only-meeting-app-admin-frontend.vercel.app"
-      ],
+      connectSrc: "*",
       imgSrc: ["'self'", "data:", "https:"],
     },
   },
