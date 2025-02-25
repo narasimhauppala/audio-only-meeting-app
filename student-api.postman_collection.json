@@ -1,0 +1,276 @@
+{
+  "info": {
+    "_postman_id": "student-api-collection",
+    "name": "Student APIs",
+    "description": "Collection for student-related endpoints",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Student Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"{{student_username}}\",\n  \"password\": \"{{student_password}}\"\n}"
+            },
+            "url": "{{BASE_URL}}/api/student/login",
+            "description": "Login with student credentials"
+          }
+        },
+        {
+          "name": "Change Password",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{student_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"currentPassword\": \"{{current_password}}\",\n  \"newPassword\": \"{{new_password}}\"\n}"
+            },
+            "url": "{{BASE_URL}}/api/student/change-password",
+            "description": "Change student password"
+          }
+        },
+        {
+          "name": "Get Profile",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{student_token}}"
+              }
+            ],
+            "url": "{{BASE_URL}}/api/auth/profile",
+            "description": "Get student profile details"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Meetings",
+      "item": [
+        {
+          "name": "Get Student Meetings",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{student_token}}"
+              }
+            ],
+            "url": "{{BASE_URL}}/api/student/meetings",
+            "description": "Get all meetings assigned to student"
+          }
+        },
+        {
+          "name": "Join Meeting",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{student_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"meetingId\": \"{{meeting_id}}\"\n}"
+            },
+            "url": "{{BASE_URL}}/api/meetings/join",
+            "description": "Join an active meeting"
+          }
+        },
+        {
+          "name": "Leave Meeting",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{student_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"meetingId\": \"{{meeting_id}}\"\n}"
+            },
+            "url": "{{BASE_URL}}/api/meetings/leave",
+            "description": "Leave current meeting"
+          }
+        },
+        {
+          "name": "Request Private Chat",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{student_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"meetingId\": \"{{meeting_id}}\",\n  \"hostId\": \"{{host_id}}\"\n}"
+            },
+            "url": "{{BASE_URL}}/api/meetings/request-private",
+            "description": "Request private chat with host"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Recordings",
+      "item": [
+        {
+          "name": "Get Student Recordings",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{student_token}}"
+              }
+            ],
+            "url": "{{BASE_URL}}/api/student/recordings",
+            "description": "Get all accessible recordings"
+          }
+        },
+        {
+          "name": "Get Recording URL",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{student_token}}"
+              }
+            ],
+            "url": "{{BASE_URL}}/api/recordings/url/{{recording_id}}",
+            "description": "Get signed URL for a recording"
+          }
+        },
+        {
+          "name": "Get Meeting Recordings",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{student_token}}"
+              }
+            ],
+            "url": "{{BASE_URL}}/api/recordings/meeting/{{meeting_id}}",
+            "description": "Get all recordings from a specific meeting"
+          }
+        },
+        {
+          "name": "Get Private Recordings",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{student_token}}"
+              }
+            ],
+            "url": "{{BASE_URL}}/api/student/recordings/private",
+            "description": "Get all private conversation recordings"
+          }
+        }
+      ]
+    },
+    {
+      "name": "WebSocket Events",
+      "item": [
+        {
+          "name": "Connect to Meeting",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{student_token}}"
+              }
+            ],
+            "url": "{{WS_URL}}/socket.io/?meetingId={{meeting_id}}&EIO=4&transport=websocket",
+            "description": "WebSocket connection for meeting"
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "BASE_URL",
+      "value": "http://localhost:5000"
+    },
+    {
+      "key": "WS_URL",
+      "value": "ws://localhost:5000"
+    },
+    {
+      "key": "student_token",
+      "value": "your_jwt_token_here"
+    },
+    {
+      "key": "student_username",
+      "value": "student1"
+    },
+    {
+      "key": "student_password",
+      "value": "password123"
+    },
+    {
+      "key": "current_password",
+      "value": "old_password"
+    },
+    {
+      "key": "new_password",
+      "value": "new_password"
+    },
+    {
+      "key": "meeting_id",
+      "value": "meeting_id_here"
+    },
+    {
+      "key": "recording_id",
+      "value": "recording_id_here"
+    },
+    {
+      "key": "host_id",
+      "value": "host_id_here"
+    }
+  ]
+} 

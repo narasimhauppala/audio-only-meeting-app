@@ -1,0 +1,858 @@
+{
+  "info": {
+    "_postman_id": "your-collection-id",
+    "name": "Audio Meeting API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "json": "{\n  \"username\": \"{{username}}\",\n  \"password\": \"{{password}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "{{BASE_URL}}/api/auth/login",
+            "description": "Login with username and password"
+          }
+        },
+        {
+          "name": "Get Profile",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{BASE_URL}}/api/auth/profile",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "auth", "profile"]
+            }
+          }
+        },
+        {
+          "name": "Change Password",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"currentPassword\": \"{{currentPassword}}\",\n  \"newPassword\": \"{{newPassword}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/api/auth/change-password",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "auth", "change-password"]
+            }
+          }
+        },
+        {
+          "name": "Create Student",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"student1\",\n  \"password\": \"Student123!\",\n  \"email\": \"student1@example.com\",\n  \"firstName\": \"John\",\n  \"lastName\": \"Doe\",\n  \"role\": \"student\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/register",
+              "path": ["api", "auth", "register"]
+            },
+            "description": "Create a new student account (requires host authentication)"
+          }
+        },
+        {
+          "name": "Create Host",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": {
+                "username": "host1",
+                "password": "password123",
+                "role": "host"
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/register",
+              "path": ["api", "auth", "register"]
+            },
+            "description": "Create a new host account (requires admin authentication)"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Admin",
+      "item": [
+        {
+          "name": "Create Host",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"username\": \"host1\",\n\t\"password\": \"Host123!\"\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/api/admin/hosts",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "admin", "hosts"]
+            }
+          }
+        },
+        {
+          "name": "Get All Hosts",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{BASE_URL}}/api/admin/hosts",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "admin", "hosts"]
+            }
+          }
+        },
+        {
+          "name": "Update Host",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"username\": \"host1_updated\",\n\t\"isActive\": true\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/api/admin/hosts/{{hostId}}",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "admin", "hosts", "{{hostId}}"]
+            }
+          }
+        },
+        {
+          "name": "Delete Host",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{BASE_URL}}/api/admin/hosts/{{hostId}}",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "admin", "hosts", "{{hostId}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Host",
+      "item": [
+        {
+          "name": "Create Student",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": {
+                "username": "student1",
+                "password": "Student123!",
+                "email": "student1@example.com",
+                "firstName": "John",
+                "lastName": "Doe",
+                "role": "student"
+              }
+            },
+            "url": "{{BASE_URL}}/api/host/students",
+            "description": "Create a new student (requires host authentication)"
+          }
+        },
+        {
+          "name": "Get All Students",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{BASE_URL}}/api/host/students",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "host", "students"]
+            }
+          }
+        },
+        {
+          "name": "Update Student",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": {
+                "username": "student1_updated",
+                "email": "student1_updated@example.com",
+                "firstName": "John",
+                "lastName": "Doe",
+                "isActive": true
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/api/host/students/{{studentId}}",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "host", "students", "{{studentId}}"]
+            }
+          }
+        },
+        {
+          "name": "Delete Student",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{BASE_URL}}/api/host/students/{{studentId}}",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "host", "students", "{{studentId}}"]
+            }
+          }
+        },
+        {
+          "name": "Get Host Recordings",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{BASE_URL}}/api/host/recordings",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "host", "recordings"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Student",
+      "item": [
+        {
+          "name": "Change Password",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"currentPassword\": \"oldpass\",\n\t\"newPassword\": \"newpass\"\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/api/student/change-password",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "student", "change-password"]
+            }
+          }
+        },
+        {
+          "name": "Get My Recordings",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{BASE_URL}}/api/student/recordings",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "student", "recordings"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Meetings",
+      "item": [
+        {
+          "name": "Create Meeting",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Math Class\",\n  \"description\": \"Weekly math tutoring session\",\n  \"maxParticipants\": 10,\n  \"startTime\": \"2024-03-20T10:00:00Z\",\n  \"duration\": 60,\n  \"settings\": {\n    \"allowChat\": true,\n    \"allowRecording\": true,\n    \"allowScreenShare\": true,\n    \"muteOnEntry\": true,\n    \"waitingRoom\": false\n  },\n  \"participants\": [\"{{studentId1}}\", \"{{studentId2}}\"]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "{{BASE_URL}}/api/meetings/create",
+            "description": "Create a new meeting (requires host authentication)"
+          }
+        },
+        {
+          "name": "Join Meeting",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"meetingId\": \"{{meetingId}}\",\n  \"participantName\": \"{{username}}\",\n  \"audioEnabled\": true,\n  \"videoEnabled\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "{{BASE_URL}}/api/meetings/join",
+            "description": "Join an existing meeting"
+          }
+        },
+        {
+          "name": "Leave Meeting",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"meetingId\": \"{{meetingId}}\"\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/api/meetings/leave",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "meetings", "leave"]
+            }
+          }
+        },
+        {
+          "name": "Switch Mode",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": {
+                "meetingId": "{{meetingId}}",
+                "mode": "private",
+                "studentId": "{{studentId}}",
+                "duration": 15,
+                "reason": "Individual assistance"
+              }
+            },
+            "url": "{{BASE_URL}}/api/meetings/switch-mode",
+            "description": "Switch meeting mode (requires host authentication)"
+          }
+        },
+        {
+          "name": "Start Private Conversation",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"meetingId\": \"{{meetingId}}\"\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/api/meetings/private/start",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "meetings", "private", "start"]
+            }
+          }
+        },
+        {
+          "name": "End Private Conversation",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"meetingId\": \"{{meetingId}}\",\n\t\"recordingId\": \"{{recordingId}}\"\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/api/meetings/private/end",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "meetings", "private", "end"]
+            }
+          }
+        },
+        {
+          "name": "End Meeting",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"meetingId\": \"{{meetingId}}\"\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/api/meetings/end",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "meetings", "end"]
+            }
+          }
+        },
+        {
+          "name": "Get Meeting Participants",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{BASE_URL}}/api/meetings/participants/{{meetingId}}",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "meetings", "participants", "{{meetingId}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Recordings",
+      "item": [
+        {
+          "name": "Start Recording",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"meetingId\": \"{{meetingId}}\",\n  \"studentId\": \"{{studentId}}\",\n  \"isPrivate\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "{{BASE_URL}}/api/recordings/start",
+            "description": "Start audio recording for a student in the meeting"
+          }
+        },
+        {
+          "name": "End Recording",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "recordingId",
+                  "value": "{{recordingId}}",
+                  "type": "text"
+                },
+                {
+                  "key": "audioFile",
+                  "type": "file",
+                  "src": "/path/to/audio.mp3",
+                  "description": "Audio file in mp3 format"
+                },
+                {
+                  "key": "duration",
+                  "value": "300",
+                  "type": "text",
+                  "description": "Recording duration in seconds"
+                }
+              ]
+            },
+            "url": "{{BASE_URL}}/api/recordings/end",
+            "description": "End and save an audio recording"
+          }
+        },
+        {
+          "name": "Get Recording URL",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{BASE_URL}}/api/recordings/url/{{recordingId}}",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "recordings", "url", "{{recordingId}}"]
+            }
+          }
+        },
+        {
+          "name": "Get Meeting Recordings",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{BASE_URL}}/api/recordings/meeting/{{meetingId}}",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "recordings", "meeting", "{{meetingId}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Signal",
+      "item": [
+        {
+          "name": "Send Signal",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"targetId\": \"{{targetUserId}}\",\n  \"meetingId\": \"{{meetingId}}\",\n  \"signal\": {\n    \"type\": \"offer\",\n    \"sdp\": \"v=0\\r\\no=- 123456789 2 IN IP4 127.0.0.1...\",\n    \"metadata\": {\n      \"audioEnabled\": true,\n      \"videoEnabled\": false\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/api/signal/signal",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "signal", "signal"]
+            }
+          }
+        },
+        {
+          "name": "Get ICE Servers",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{BASE_URL}}/api/signal/ice-servers",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "signal", "ice-servers"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Student Meetings",
+      "item": [
+        {
+          "name": "Get My Meetings",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": "{{BASE_URL}}/api/meetings/student/meetings",
+            "description": "Get all meetings where the student is a participant"
+          }
+        },
+        {
+          "name": "Join Meeting",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"meetingId\": \"{{meetingId}}\"\n}"
+            },
+            "url": "{{BASE_URL}}/api/meetings/join",
+            "description": "Join a meeting as a student"
+          }
+        },
+        {
+          "name": "Leave Meeting",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"meetingId\": \"{{meetingId}}\"\n}"
+            },
+            "url": "{{BASE_URL}}/api/meetings/leave",
+            "description": "Leave a meeting as a student"
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "BASE_URL",
+      "value": "http://localhost:5000"
+    },
+    {
+      "key": "token",
+      "value": "your_jwt_token_here"
+    },
+    {
+      "key": "hostId",
+      "value": "host_id_here"
+    },
+    {
+      "key": "studentId",
+      "value": "student_id_here"
+    },
+    {
+      "key": "meetingId",
+      "value": "meeting_id_here"
+    },
+    {
+      "key": "recordingId",
+      "value": "recording_id_here"
+    },
+    {
+      "key": "targetUserId",
+      "value": "target_user_id_here"
+    },
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5000"
+    },
+    {
+      "key": "username",
+      "value": "user1"
+    },
+    {
+      "key": "password",
+      "value": "password123"
+    }
+  ]
+} 
