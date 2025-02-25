@@ -34,7 +34,8 @@ export const securityHeaders = helmet({
         "ws://localhost:5000",
         "ws://192.168.1.74:5002",
         "ws://192.168.1.80:5000",
-        "http://localhost:5174"
+        "http://localhost:5174",
+        "https://audio-only-meeting-app-admin-frontend.onrender.com"
       ],
       imgSrc: ["'self'", "data:", "https:"],
     },
