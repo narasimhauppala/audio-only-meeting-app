@@ -35,37 +35,39 @@ const httpServer = createServer(app);
 const wsServer = createServer();
 const WS_PORT = process.env.WS_PORT || 5001;
 
-// Update the CORS options
+// Update the CORS options with proper origin handling
 const corsOptions = {
-  origin: [
-    'http://localhost:5173',
-    'http://localhost:5174',
-    'http://192.168.1.74:5173',
-    'http://192.168.1.74:5174',
-    'http://192.168.1.80:5173',
-    'https://audio-only-meeting-app-admin-frontend.vercel.app',
-    'https://audio-only-meeting-app-admin-frontend.onrender.com'
-  ],
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
   credentials: true,
-  optionsSuccessStatus: 200
+  optionsSuccessStatus: 200,
+  preflightContinue: false
 };
 
+// Apply CORS before other middleware
 app.use(cors(corsOptions));
 
 // Create separate server for WebSocket
 const io = new Server(wsServer, {
   cors: {
-    origin: [
-      'http://localhost:5173',
-      'http://localhost:5174',
-      'http://192.168.1.74:5173',
-      'http://192.168.1.74:5174',
-      'http://192.168.1.80:5173',
-      'https://audio-only-meeting-app-admin-frontend.vercel.app',
-      'https://audio-only-meeting-app-admin-frontend.onrender.com'
-    ],
+    origin: function (origin, callback) {
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.indexOf(origin) !== -1) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
     methods: ['GET', 'POST'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true
@@ -168,6 +170,18 @@ app.get('/debug/meetings/:meetingId', async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
+});
+
+// Add error handling for CORS
+app.use((err, req, res, next) => {
+  if (err.message === 'Not allowed by CORS') {
+    logger.error(`CORS error: ${err.message} for origin: ${req.headers.origin}`);
+    return res.status(403).json({
+      status: 'error',
+      message: 'CORS policy violation'
+    });
+  }
+  next(err);
 });
 
 const startServer = async () => {
