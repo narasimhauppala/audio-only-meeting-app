@@ -19,7 +19,7 @@ export const authLimiter = rateLimit({
   message: 'Too many login attempts, please try again after an hour'
 });
 
-// Security headers
+// Security headers added
 export const securityHeaders = helmet({
   crossOriginResourcePolicy: { policy: "cross-origin" },
   crossOriginEmbedderPolicy: false,
