@@ -50,7 +50,7 @@ const io = new Server(wsServer, {
       "https://audio-only-meeting-app-admin-frontend.vercel.app",
       "https://audio-only-meeting-app.onrender.com"
     ],
-    methods: ['GET', 'POST'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true
   },
@@ -60,6 +60,8 @@ const io = new Server(wsServer, {
   transports: ['websocket', 'polling'],
   allowEIO3: true
 });
+
+app.options('*', cors());
 
 // Error handling for both servers
 httpServer.on('error', (error) => {
