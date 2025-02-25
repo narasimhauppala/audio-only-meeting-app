@@ -35,10 +35,37 @@ const httpServer = createServer(app);
 const wsServer = createServer();
 const WS_PORT = process.env.WS_PORT || 5001;
 
-// Configure CORS properly for WebSocket server
+// Update the CORS options
+const corsOptions = {
+  origin: [
+    'http://localhost:5173',
+    'http://localhost:5174',
+    'http://192.168.1.74:5173',
+    'http://192.168.1.74:5174',
+    'http://192.168.1.80:5173',
+    'https://audio-only-meeting-app-admin-frontend.vercel.app',
+    'https://audio-only-meeting-app-admin-frontend.onrender.com'
+  ],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true,
+  optionsSuccessStatus: 200
+};
+
+app.use(cors(corsOptions));
+
+// Create separate server for WebSocket
 const io = new Server(wsServer, {
   cors: {
-    origin: "*",
+    origin: [
+      'http://localhost:5173',
+      'http://localhost:5174',
+      'http://192.168.1.74:5173',
+      'http://192.168.1.74:5174',
+      'http://192.168.1.80:5173',
+      'https://audio-only-meeting-app-admin-frontend.vercel.app',
+      'https://audio-only-meeting-app-admin-frontend.onrender.com'
+    ],
     methods: ['GET', 'POST'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true
@@ -49,14 +76,6 @@ const io = new Server(wsServer, {
   transports: ['websocket', 'polling'],
   allowEIO3: true
 });
-
-const corsOptions ={
-  origin:'*', 
-  credentials:true,            //access-control-allow-credentials:true
-  optionSuccessStatus:200,
-}
-
-app.use(cors(corsOptions))
 
 // Error handling for both servers
 httpServer.on('error', (error) => {
