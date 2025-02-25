@@ -38,15 +38,7 @@ const WS_PORT = process.env.WS_PORT || 5001;
 // Configure CORS properly for WebSocket server
 const io = new Server(wsServer, {
   cors: {
-    origin: [ "http://localhost:5173",
-      "http://192.168.1.74:5174",
-      "http://192.168.1.80:5173",
-      "ws://localhost:5000",
-      "ws://192.168.1.74:5002",
-      "ws://192.168.1.80:5000",
-      "http://localhost:5174",
-      "https://audio-only-meeting-app-admin-frontend.onrender.com",
-      "https://audio-only-meeting-app-admin-frontend.vercel.app"],
+    origin: "*",
     methods: ['GET', 'POST'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true
@@ -57,6 +49,8 @@ const io = new Server(wsServer, {
   transports: ['websocket', 'polling'],
   allowEIO3: true
 });
+
+app.use(cors({origin:"*"}))
 
 // Error handling for both servers
 httpServer.on('error', (error) => {
@@ -88,7 +82,7 @@ initIO(io);
 app.set('io', io);
 
 // Security middleware
-app.use(securityHeaders);
+// app.use(securityHeaders);
 app.use(mongoSanitize());
 app.use(xss());
 app.use(hpp());

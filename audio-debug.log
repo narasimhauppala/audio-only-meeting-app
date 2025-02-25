@@ -25611,3 +25611,21 @@
 {"level":"info","message":"Server accessible at http://192.168.1.74:5000","timestamp":"2025-02-25T12:43:14.778Z"}
 {"level":"info","message":"WebSocket Server running on port 5002","timestamp":"2025-02-25T12:43:14.780Z"}
 {"level":"info","message":"WebSocket Server accessible at ws://192.168.1.74:5002/ws","timestamp":"2025-02-25T12:43:14.782Z"}
+{"level":"info","message":"All cleanup cron jobs initialized","timestamp":"2025-02-25T12:46:07.004Z"}
+{"level":"info","message":"S3 connection test successful","timestamp":"2025-02-25T12:46:09.336Z"}
+{"level":"info","message":"S3 connection verified successfully","timestamp":"2025-02-25T12:46:09.338Z"}
+{"level":"info","message":"MongoDB Connected: cluster0-shard-00-02.679a3.mongodb.net","timestamp":"2025-02-25T12:46:11.628Z"}
+{"level":"info","message":"AWS credentials verified successfully","timestamp":"2025-02-25T12:46:12.392Z"}
+{"level":"info","message":"HTTP Server running on port 5000","timestamp":"2025-02-25T12:46:12.409Z"}
+{"level":"info","message":"Server accessible at http://192.168.1.74:5000","timestamp":"2025-02-25T12:46:12.412Z"}
+{"level":"info","message":"WebSocket Server running on port 5002","timestamp":"2025-02-25T12:46:12.414Z"}
+{"level":"info","message":"WebSocket Server accessible at ws://192.168.1.74:5002/ws","timestamp":"2025-02-25T12:46:12.416Z"}
+{"level":"info","message":"All cleanup cron jobs initialized","timestamp":"2025-02-25T12:47:16.704Z"}
+{"level":"info","message":"S3 connection test successful","timestamp":"2025-02-25T12:47:19.154Z"}
+{"level":"info","message":"S3 connection verified successfully","timestamp":"2025-02-25T12:47:19.156Z"}
+{"level":"info","message":"MongoDB Connected: cluster0-shard-00-01.679a3.mongodb.net","timestamp":"2025-02-25T12:47:23.627Z"}
+{"level":"info","message":"AWS credentials verified successfully","timestamp":"2025-02-25T12:47:24.493Z"}
+{"level":"info","message":"HTTP Server running on port 5000","timestamp":"2025-02-25T12:47:24.502Z"}
+{"level":"info","message":"Server accessible at http://192.168.1.74:5000","timestamp":"2025-02-25T12:47:24.504Z"}
+{"level":"info","message":"WebSocket Server running on port 5002","timestamp":"2025-02-25T12:47:24.507Z"}
+{"level":"info","message":"WebSocket Server accessible at ws://192.168.1.74:5002/ws","timestamp":"2025-02-25T12:47:24.511Z"}
