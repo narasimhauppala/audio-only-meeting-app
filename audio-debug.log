@@ -25593,3 +25593,12 @@
 {"level":"info","message":"Server accessible at http://192.168.1.74:5000","timestamp":"2025-02-25T12:33:41.939Z"}
 {"level":"info","message":"WebSocket Server running on port 5002","timestamp":"2025-02-25T12:33:41.941Z"}
 {"level":"info","message":"WebSocket Server accessible at ws://192.168.1.74:5002/ws","timestamp":"2025-02-25T12:33:41.944Z"}
+{"level":"info","message":"All cleanup cron jobs initialized","timestamp":"2025-02-25T12:39:13.910Z"}
+{"level":"info","message":"S3 connection test successful","timestamp":"2025-02-25T12:39:16.448Z"}
+{"level":"info","message":"S3 connection verified successfully","timestamp":"2025-02-25T12:39:16.450Z"}
+{"level":"info","message":"MongoDB Connected: cluster0-shard-00-02.679a3.mongodb.net","timestamp":"2025-02-25T12:39:18.806Z"}
+{"level":"info","message":"AWS credentials verified successfully","timestamp":"2025-02-25T12:39:19.623Z"}
+{"level":"info","message":"HTTP Server running on port 5000","timestamp":"2025-02-25T12:39:19.642Z"}
+{"level":"info","message":"Server accessible at http://192.168.1.74:5000","timestamp":"2025-02-25T12:39:19.644Z"}
+{"level":"info","message":"WebSocket Server running on port 5002","timestamp":"2025-02-25T12:39:19.647Z"}
+{"level":"info","message":"WebSocket Server accessible at ws://192.168.1.74:5002/ws","timestamp":"2025-02-25T12:39:19.648Z"}
