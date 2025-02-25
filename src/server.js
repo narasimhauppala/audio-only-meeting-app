@@ -38,7 +38,6 @@ const WS_PORT = process.env.WS_PORT || 5001;
 // Configure CORS properly for WebSocket server
 const io = new Server(wsServer, {
   cors: {
-    origin: "*",
     methods: ['GET', 'POST'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true
