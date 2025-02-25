@@ -80,7 +80,7 @@ initIO(io);
 app.set('io', io);
 
 // Security middleware
-app.use(securityHeaders);
+// app.use(securityHeaders);
 app.use(mongoSanitize());
 app.use(xss());
 app.use(hpp());
