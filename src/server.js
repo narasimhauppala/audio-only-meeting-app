@@ -38,7 +38,7 @@ const WS_PORT = process.env.WS_PORT || 5001;
 // Configure CORS properly for WebSocket server
 const io = new Server(wsServer, {
   cors: {
-    origin: [process.env.FRONTEND_URL, process.env.CLIENT_URL, "http://192.168.1.74:5175","http://192.168.1.74:5174", "http://localhost:5174","http://localhost:5175","http://192.168.1.80:5173","http://192.168.1.80:5173", "https://audio-only-meeting-app-admin-frontend.onrender.com","https://audio-only-meeting-app-admin-frontend.vercel.app"],
+    origin: "*",
     methods: ['GET', 'POST'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true

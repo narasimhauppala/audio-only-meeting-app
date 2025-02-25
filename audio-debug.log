@@ -25557,3 +25557,12 @@
 {"level":"error","message":"Failed to generate signed URL for recording 67babf57b87c02b31dc22917","timestamp":"2025-02-23T06:26:34.922Z"}
 {"level":"error","message":"Error generating signed URL: No file key provided","timestamp":"2025-02-23T06:30:16.313Z"}
 {"level":"error","message":"Failed to generate signed URL for recording 67babf57b87c02b31dc22917","timestamp":"2025-02-23T06:30:16.317Z"}
+{"level":"info","message":"All cleanup cron jobs initialized","timestamp":"2025-02-25T10:51:20.906Z"}
+{"level":"info","message":"S3 connection test successful","timestamp":"2025-02-25T10:51:23.511Z"}
+{"level":"info","message":"S3 connection verified successfully","timestamp":"2025-02-25T10:51:23.513Z"}
+{"level":"info","message":"MongoDB Connected: cluster0-shard-00-00.679a3.mongodb.net","timestamp":"2025-02-25T10:51:26.520Z"}
+{"level":"info","message":"AWS credentials verified successfully","timestamp":"2025-02-25T10:51:27.375Z"}
+{"level":"info","message":"HTTP Server running on port 5000","timestamp":"2025-02-25T10:51:27.398Z"}
+{"level":"info","message":"Server accessible at http://192.168.1.74:5000","timestamp":"2025-02-25T10:51:27.403Z"}
+{"level":"info","message":"WebSocket Server running on port 5002","timestamp":"2025-02-25T10:51:27.407Z"}
+{"level":"info","message":"WebSocket Server accessible at ws://192.168.1.74:5002/ws","timestamp":"2025-02-25T10:51:27.409Z"}
